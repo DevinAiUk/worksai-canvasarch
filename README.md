@@ -1,31 +1,22 @@
-# WorksAi CanvasArch (`worksai-01`)
+# WorksAi CanvasArch (`worksai-canvasarch`)
 
 > Turn plain-English system specs and schemas into editable hand-drawn architecture diagrams.
 
-**Category:** A. Web apps  
-**License:** MIT (Derivative of [Excalidraw](https://github.com/excalidraw/excalidraw) @ `7ded689`)  
-**Portfolio Page:** `https://devinai.uk/worksai/products/worksai-canvasarch/`
+- **Live Subdomain Application:** [https://canvasarch.worksai.org](https://canvasarch.worksai.org)
+- **WorksAI Hub Specification:** [https://worksai.org/apps/worksai-canvasarch](https://worksai.org/apps/worksai-canvasarch)
+- **Category:** A. Web apps
+- **License:** MIT (Derived from [Excalidraw](https://github.com/excalidraw/excalidraw) @ `7ded689`)
 
-## Value Proposition & Scope
-Replaces Miro's $8-$20/seat/month subscription with a local-first, MIT-licensed architecture whiteboard that parses natural-language system specs and Mermaid flows into structured canvas nodes, edges, and SVG exports.
+## Capability Matrix
+- **What You Can Do:** Parse plain-English or Mermaid specs into positioned architecture nodes/edges, detect single-point-of-failure (SPOF) bottlenecks, render & export interactive SVG diagrams, and persist multi-board snapshots to Cloudflare R2.
+- **Deterministic Domain Utilities:** parseArchitectureSpec (directed graph layout & fan-in/fan-out SPOF calculation) and renderArchitectureSvg (accessible SVG generator).
+- **Genuine AI Model Features:** Cloudflare Workers AI (@cf/meta/llama-3.1-8b-instruct) unstructured prose-to-topology expansion and architectural risk remediation advice when invoked with mode='ai_assisted'.
+- **Persisted R2/Neon Features:** Saved architecture specs, generated SVG topologies, and SPOF audit snapshots persisted in Cloudflare R2 (workspaces/worksai-canvasarch/*) and Neon Postgres.
+- **Known Limitations:** Real-time multi-cursor WebSocket collaboration requires an external Durable Object room relay; standalone mode uses R2 snapshot persistence.
 
-### What Works Out-of-the-Box (Zero External Credentials Required)
-Full spec-to-diagram parsing, grid auto-layout, SPOF topology analyzer, local multi-board persistence, and SVG/JSON export.
-
-### What Requires User Configuration (`.env.example`)
-Optional `OPENAI_API_KEY` or `GEMINI_API_KEY` for unstructured prose-to-spec expansion; optional `WS_RELAY_URL` for multi-user room sync.
-
-## Measurable Acceptance Criteria
-- AC-01: Parses natural-language or Mermaid flow specs (`A -> B -> C`) into positioned canvas nodes and directed edges with zero coordinate overlap.
-- AC-02: Persists and reloads multi-board architecture workspaces deterministically via JSON/storage adapter.
-- AC-03: Flags single-point-of-failure (SPOF) nodes with >=2 downstream dependencies and no redundancy.
-- AC-04: Exports valid, self-contained `<svg>` markup with accessible `<title>` and `<desc>` tags and rejects empty/malformed specs with safe validation errors.
-
-## Known Limitations
-- Unstructured prose without arrow/component delimiters uses heuristic entity extraction unless an LLM API key is configured.
-- Real-time multi-cursor collaboration requires deploying the optional WebSocket room relay.
-
-## Quick Start & Verification
+## Verification & Local Testing
 ```bash
+npm run lint
+npm run typecheck
 npm test
 ```
