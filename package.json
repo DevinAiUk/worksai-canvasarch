@@ -1,0 +1,16 @@
+{
+  "name": "@worksai/worksai-canvasarch",
+  "version": "1.0.0",
+  "description": "Turn plain-English system specs and schemas into editable hand-drawn architecture diagrams.",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.mjs",
+  "scripts": {
+    "test": "node --test tests/product.test.mjs",
+    "lint": "node --check src/index.mjs && node --check tests/product.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevinAiUk/worksai-canvasarch.git"
+  }
+}
